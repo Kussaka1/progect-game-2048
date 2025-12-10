@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+/* игровое поле */
+#game-board {
+    /* переменные повторяющихся значений  для щирины ячейки и отступа между ними*/
+    --cell-size: 20vmin;
+    --cell-gap: 2vmin;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, var(--cell-size));
+    grid-template-rows: repeat(4, var(--cell-size));
+    gap: var(--cell-gap);
+    border-radius: 1vmin;
+}
+/* ячейки основные */
+.cell {
+    background-color: #555;
+    border-radius: 1vmin;
+}
+/* ячейки с цифрами */
+.tile {
+    /* переменные чтобы менять их в js */
+    --y: 1;
+    --x: 2;
+    position: absolute;
+    top: calc(
+        var(--y) * (var(--cell-size) + var(--cell-gap))
+    ); /* 0 отвечает за расположение квадрата с цифрой от 0 до 3  top - по оси y left - x*/
+    left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vmin;
+    height: 20vmin;
+    border-radius: 1vmin;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 7.5vmin;
+    background-color: hsl(170, 60%, var(--bg-ligth));
+    color: hsl(160, 25%, var(--text-ligth));
+    transition: 150ms;
+    animation: show 200ms;
+}
+@keyframes show {
+    0% {
+        opacity: 0.4;
+        transform: scale(0);
+    }
+}
